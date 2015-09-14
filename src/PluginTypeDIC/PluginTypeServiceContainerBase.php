@@ -4,7 +4,7 @@ namespace Drupal\uniplugin\PluginTypeDIC;
 
 use Drupal\uniplugin\DefinitionsById\DefinitionsByIdBuffer;
 use Drupal\uniplugin\DefinitionToLabel\DefinitionToLabel;
-use Drupal\uniplugin\DefinitionToPlugin\DefinitionToPluginChain;
+use Drupal\uniplugin\DefinitionToPlugin\DefinitionToPlugin;
 use Drupal\uniplugin\DIC\ServiceContainerBase;
 use Drupal\uniplugin\Manager\UniPluginManager;
 use Drupal\uniplugin\IdToLabel\IdToLabel;
@@ -166,7 +166,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionToPlugin
    */
   protected function get_definitionToPlugin() {
-    return DefinitionToPluginChain::createDefault();
+    return DefinitionToPlugin::createDefault();
   }
 
   /**

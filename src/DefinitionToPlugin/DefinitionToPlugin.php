@@ -13,7 +13,7 @@ use Drupal\uniplugin\DefinitionToPlugin\Chained\PluginObjectDefinitionToPlugin;
 use Drupal\uniplugin\UniPlugin\Broken\BrokenUniPlugin;
 use Drupal\uniplugin\UniPlugin\UniPluginInterface;
 
-class DefinitionToPluginChain implements DefinitionToPluginInterface {
+class DefinitionToPlugin implements DefinitionToPluginInterface {
 
   /**
    * @var \Drupal\uniplugin\DefinitionToPlugin\Chained\ChainedDefinitionToPluginInterface[]
