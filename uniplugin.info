@@ -1,0 +1,5 @@
+name = Unified Plugin API
+core = 7.x
+dependencies[] = xautoload
+dependencies[] = uikit
+dependencies[] = renderkit

@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @param array $form
+ * @param array $form_state
+ *
+ * @return array
+ *
+ * @see \Drupal\uniplugin\FormElement\UniPluginFormElement::process()
+ */
+function _uniplugin_element_ajax_callback(array $form, array &$form_state) {
+  $keys = $form_state['triggering_element']['#parents'];
+  array_pop($keys);
+  $keys[] = 'plugin_options';
+  $return = $form;
+  foreach ($keys as $key) {
+    if (!isset($return[$key])) {
+      return array(
+        '#children' => implode(', ', $keys),
+      );
+    }
+    $return = $return[$key];
+  }
+  return $return;
+}
