@@ -9,7 +9,7 @@ use Drupal\uniplugin\DIC\ServiceContainerBase;
 use Drupal\uniplugin\IdConfToSummary\IdConfToSummary;
 use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabel;
 use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelBuffer;
-use Drupal\uniplugin\Manager\UniPluginManager;
+use Drupal\uniplugin\Manager\InternalUniManager;
 use Drupal\uniplugin\IdToLabel\IdToLabel;
 use Drupal\uniplugin\IdToLabel\IdToLabelBuffer;
 use Drupal\uniplugin\LabelsByModuleAndId\LabelsByModuleAndId;
@@ -59,7 +59,7 @@ use Drupal\uniplugin\PluginConfToHandler\PluginConfToHandler;
  * @property \Drupal\uikit\FormElement\UikitElementTypeInterface $uikitElementType
  *   A form element object, to choose a plugin from this type.
  *
- * @property \Drupal\uniplugin\Manager\UniPluginManagerInterface $manager
+ * @property \Drupal\uniplugin\Manager\InternalUniManagerInterface $manager
  *   Not sure what this does..
  *
  * @property \Drupal\uniplugin\DefinitionToPlugin\DefinitionToPluginInterface $definitionToPlugin
@@ -179,12 +179,12 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
   }
 
   /**
-   * @return \Drupal\uniplugin\Manager\UniPluginManagerInterface
+   * @return \Drupal\uniplugin\Manager\InternalUniManagerInterface
    *
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::manager
    */
   protected function get_manager() {
-    return new UniPluginManager($this->uikitElementType, $this->idConfToHandler, $this->idToLabel, $this->idConfToSummary);
+    return new InternalUniManager($this->uikitElementType, $this->idConfToHandler, $this->idToLabel, $this->idConfToSummary);
   }
 
   /**

@@ -12,7 +12,7 @@ use Drupal\uniplugin\IdToLabel\IdToLabelInterface;
 /**
  * Default implementation for UniPluginManagerInterface.
  */
-class UniPluginManager implements UniPluginManagerInterface {
+class InternalUniManager implements InternalUniManagerInterface {
 
   /**
    * @var \Drupal\uikit\FormElement\UikitElementTypeInterface
@@ -64,18 +64,6 @@ class UniPluginManager implements UniPluginManagerInterface {
     return isset($title)
       ? new UikitElementTypeTitleDecorator($this->uikitElementType, $title)
       : $this->uikitElementType;
-  }
-
-  /**
-   * @param array $settings
-   *
-   * @return string
-   */
-  function settingsGetLabel(array $settings) {
-    if (!isset($settings['plugin_id'])) {
-      return '?';
-    }
-    return $this->idToLabel->idGetLabel($settings['plugin_id']);
   }
 
   /**
