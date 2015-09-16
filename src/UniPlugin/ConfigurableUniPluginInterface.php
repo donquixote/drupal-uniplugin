@@ -11,6 +11,7 @@ interface ConfigurableUniPluginInterface extends UniPluginInterface {
    *   Current configuration. Will be empty if not configured yet.
    *
    * @return array
+   *   A sub-form array to configure the plugin.
    *
    * @see \views_handler::options_form()
    */
@@ -20,6 +21,7 @@ interface ConfigurableUniPluginInterface extends UniPluginInterface {
    * Validation callback for the settings form.
    *
    * @param array $conf
+   *   Plugin configuration.
    * @param array $form
    * @param array $form_state
    *
