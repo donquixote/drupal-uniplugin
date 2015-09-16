@@ -2,6 +2,8 @@
 
 namespace Drupal\uniplugin\PluginTypeDIC;
 
+use Drupal\uniplugin\DefinitionsById\DefinitionsByIdBuffer;
+use Drupal\uniplugin\DefinitionsById\DefinitionsByIdCache;
 use Drupal\uniplugin\DefinitionsById\DefinitionsByIdDiscovery;
 
 /**
@@ -27,6 +29,17 @@ class DefaultPluginTypeServiceContainer extends PluginTypeServiceContainerBase {
   function __construct($hook, array $arguments = array()) {
     $this->discoveryHook = $hook;
     $this->discoveryHookArguments = $arguments;
+  }
+
+  /**
+   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface
+   *
+   * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionsByIdMap
+   */
+  protected function get_definitionsByIdMap() {
+    $cid = 'uniplugin:' . $this->discoveryHook;
+    $definitionsByIdCache = new DefinitionsByIdCache($this->pluginDefinitionDiscovery, $cid);
+    return new DefinitionsByIdBuffer($definitionsByIdCache);
   }
 
   /**

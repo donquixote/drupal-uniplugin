@@ -157,7 +157,6 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionsByIdMap
    */
   protected function get_definitionsByIdMap() {
-    // @todo Add a cache, maybe?
     return new DefinitionsByIdBuffer($this->pluginDefinitionDiscovery);
   }
 
