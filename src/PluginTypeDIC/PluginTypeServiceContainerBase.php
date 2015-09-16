@@ -139,7 +139,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionToLabel
    */
   protected function get_definitionToLabel() {
-    return new DefinitionToLabel($this->definitionToPlugin);
+    return new DefinitionToLabel();
   }
 
   /**
