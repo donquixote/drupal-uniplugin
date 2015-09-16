@@ -6,6 +6,7 @@ use Drupal\uniplugin\DefinitionsById\DefinitionsByIdBuffer;
 use Drupal\uniplugin\DefinitionToLabel\DefinitionToLabel;
 use Drupal\uniplugin\DefinitionToPlugin\DefinitionToPlugin;
 use Drupal\uniplugin\DIC\ServiceContainerBase;
+use Drupal\uniplugin\IdConfToSummary\IdConfToSummary;
 use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabel;
 use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelBuffer;
 use Drupal\uniplugin\Manager\UniPluginManager;
@@ -33,6 +34,9 @@ use Drupal\uniplugin\PluginConfToHandler\PluginConfToHandler;
  *
  * @property \Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface $idToOptionLabel
  *   Gets a label from a plugin id, with ellipsis ('…') if the plugin is configurable.
+ *
+ * @property \Drupal\uniplugin\IdConfToSummary\IdConfToSummaryInterface $idConfToSummary
+ *   Gets a summary from a plugin id + conf.
  *
  * @property \Drupal\uniplugin\LabelsByModuleAndId\LabelsByModuleAndIdInterface $labelsByModuleAndId
  *   Gets available plugin labels by module and plugin id.
@@ -109,6 +113,15 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
   protected function get_idToOptionLabel() {
     $idToOptionLabel = new IdToOptionLabel($this->idToLabel, $this->idToPlugin);
     return new IdToOptionLabelBuffer($idToOptionLabel);
+  }
+
+  /**
+   * @return \Drupal\uniplugin\IdConfToSummary\IdConfToSummaryInterface
+   *
+   * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::idConfToSummary
+   */
+  protected function get_idConfToSummary() {
+    return new IdConfToSummary($this->idToLabel, $this->idToPlugin);
   }
 
   /**
