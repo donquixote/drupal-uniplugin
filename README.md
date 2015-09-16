@@ -1,4 +1,4 @@
-# Unified Plugin API
+# Unified Plugin API (Drupal)
 
 UniPlugin is an API module to create plugin APIs. Examples are the [EntDisP (Entity Display Plugin)](https://github.com/donquixote/drupal-entdisp) and the [Listformat](https://github.com/donquixote/drupal-listformat) modules.
 
