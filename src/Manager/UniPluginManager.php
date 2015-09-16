@@ -3,6 +3,7 @@
 namespace Drupal\uniplugin\Manager;
 
 use Drupal\uikit\FormElement\UikitElementTypeInterface;
+use Drupal\uikit\FormElement\Decorator\UikitElementTypeTitleDecorator;
 use Drupal\uniplugin\Handler\BrokenUniHandler;
 use Drupal\uniplugin\IdConfToHandler\IdConfToHandlerInterface;
 use Drupal\uniplugin\IdToLabel\IdToLabelInterface;
@@ -45,10 +46,15 @@ class UniPluginManager implements UniPluginManagerInterface {
   }
 
   /**
+   * @param string|null $title
+   *   (optional) Title to give to the element, if it does not have one already.
+   *
    * @return \Drupal\uikit\FormElement\UikitElementTypeInterface
    */
-  function getUikitElementType() {
-    return $this->uikitElementType;
+  function getUikitElementType($title = NULL) {
+    return isset($title)
+      ? new UikitElementTypeTitleDecorator($this->uikitElementType, $title)
+      : $this->uikitElementType;
   }
 
   /**

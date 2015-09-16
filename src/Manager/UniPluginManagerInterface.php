@@ -11,9 +11,12 @@ interface UniPluginManagerInterface {
    * Gets the element type object to be used in a uikit form element, that
    * allows to choose and configure a plugin of this type.
    *
+   * @param string|null $defaultTitle
+   *   (optional) Title to give to the element, if it does not have one already.
+   *
    * @return \Drupal\uikit\FormElement\UikitElementTypeInterface
    */
-  function getUikitElementType();
+  function getUikitElementType($defaultTitle = NULL);
 
   /**
    * @param array $settings

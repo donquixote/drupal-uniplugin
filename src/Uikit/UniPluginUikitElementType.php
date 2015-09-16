@@ -56,11 +56,6 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
     $form_build_id = $form['form_build_id']['#value'];
     $uniqid = sha1($form_build_id . $element['#name']);
 
-
-    if (!isset($element['#title'])) {
-      $element['#title'] = t('Display plugin');
-    }
-
     $element['id']['#markup'] = '<!-- ' . $element['#name'] . ' -->';
 
     $value = isset($element['#value']) ? $element['#value'] : array();
