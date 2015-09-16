@@ -117,7 +117,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::labelsByModuleAndId
    */
   protected function get_labelsByModuleAndId() {
-    return new LabelsByModuleAndId($this->definitionsById, $this->definitionToLabel);
+    return new LabelsByModuleAndId($this->definitionsById, $this->idToOptionLabel);
   }
 
   /**

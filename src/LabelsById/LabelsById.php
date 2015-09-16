@@ -3,7 +3,8 @@
 namespace Drupal\uniplugin\LabelsById;
 
 use Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface;
-use Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface;
+
+use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface;
 
 class LabelsById implements LabelsByIdInterface {
 
@@ -13,36 +14,19 @@ class LabelsById implements LabelsByIdInterface {
   private $definitionsById;
 
   /**
-   * @var \Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface
    */
-  private $definitionToLabel;
+  private $idToOptionLabel;
 
   /**
-   * LabelsByModuleAndId constructor.
+   * LabelsById constructor.
    *
    * @param \Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface $definitionsById
-   * @param \Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface $idToOptionLabel
    */
-  function __construct(DefinitionsByIdInterface $definitionsById, DefinitionToLabelInterface $definitionToLabel) {
+  function __construct(DefinitionsByIdInterface $definitionsById, IdToOptionLabelInterface $idToOptionLabel) {
     $this->definitionsById = $definitionsById;
-    $this->definitionToLabel = $definitionToLabel;
-  }
-
-  /**
-   * @return string[][]
-   *   Format: $[$module][$plugin_id] = $label
-   */
-  function getLabelsByModuleAndId() {
-    $definitions = $this->definitionsById->getDefinitionsById();
-    $labels_by_module = array();
-    foreach ($definitions as $id => $definition) {
-      $label = $this->definitionToLabel->definitionGetLabel($definition, $id);
-      $module = isset($definition['module'])
-        ? $definition['module']
-        : '';
-      $labels_by_module[$module][$id] = $label;
-    }
-    return $labels_by_module;
+    $this->idToOptionLabel = $idToOptionLabel;
   }
 
   /**
@@ -53,7 +37,7 @@ class LabelsById implements LabelsByIdInterface {
     $definitions = $this->definitionsById->getDefinitionsById();
     $labelsById = array();
     foreach ($definitions as $id => $definition) {
-      $labelsById[$id] = $this->definitionToLabel->definitionGetLabel($definition, $id);
+      $labelsById[$id] = $this->idToOptionLabel->idGetOptionLabel($id);
     }
     return $labelsById;
   }
