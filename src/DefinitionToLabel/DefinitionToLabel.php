@@ -6,11 +6,11 @@ class DefinitionToLabel implements DefinitionToLabelInterface {
 
   /**
    * @param array $definition
-   * @param string|null $else
+   * @param string $else
    *
-   * @return string|null
+   * @return string
    */
-  function definitionGetLabel(array $definition, $else = NULL) {
+  function definitionGetLabel(array $definition, $else) {
     return isset($definition['label'])
       ? $definition['label']
       : $else;
