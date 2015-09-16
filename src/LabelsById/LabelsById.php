@@ -9,7 +9,7 @@ use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface;
 class LabelsById implements LabelsByIdInterface {
 
   /**
-   * @var \Drupal\uniplugin\DefinitionsById\PluginDefinitionBufferInterface
+   * @var \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface
    */
   private $definitionsById;
 

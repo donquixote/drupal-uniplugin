@@ -7,6 +7,6 @@ use Drupal\uniplugin\IdToDefinition\IdToDefinitionInterface;
 /**
  * Combination of two interfaces.
  */
-interface PluginDefinitionBufferInterface extends DefinitionsByIdInterface, IdToDefinitionInterface {
+interface DefinitionsByIdMapInterface extends DefinitionsByIdInterface, IdToDefinitionInterface {
 
 }

@@ -5,7 +5,7 @@ namespace Drupal\uniplugin\DefinitionsById;
 /**
  * Buffers the plugins for a specific
  */
-class DefinitionsByIdBuffer implements PluginDefinitionBufferInterface {
+class DefinitionsByIdBuffer implements DefinitionsByIdMapInterface {
 
   /**
    * @var array[]|null

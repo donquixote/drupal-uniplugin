@@ -47,7 +47,7 @@ use Drupal\uniplugin\PluginConfToHandler\PluginConfToHandler;
  * @property \Drupal\uniplugin\IdToDefinition\IdToDefinitionInterface $idToDefinition
  *   Gets a plugin definition from a plugin id.
  *
- * @property \Drupal\uniplugin\DefinitionsById\PluginDefinitionBufferInterface $definitionBuffer
+ * @property \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface $definitionBuffer
  *   Gets plugin definition from plugin id.
  *
  * @property \Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
@@ -152,7 +152,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
   }
 
   /**
-   * @return \Drupal\uniplugin\DefinitionsById\PluginDefinitionBufferInterface
+   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface
    *
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionBuffer
    */
