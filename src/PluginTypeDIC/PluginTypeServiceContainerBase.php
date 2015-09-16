@@ -47,7 +47,7 @@ use Drupal\uniplugin\PluginConfToHandler\PluginConfToHandler;
  * @property \Drupal\uniplugin\IdToDefinition\IdToDefinitionInterface $idToDefinition
  *   Gets a plugin definition from a plugin id.
  *
- * @property \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface $definitionBuffer
+ * @property \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface $definitionsByIdMap
  *   Gets plugin definition from plugin id.
  *
  * @property \Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
@@ -139,7 +139,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionsById
    */
   protected function get_definitionsById() {
-    return $this->definitionBuffer;
+    return $this->definitionsByIdMap;
   }
 
   /**
@@ -148,15 +148,15 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::idToDefinition
    */
   protected function get_idToDefinition() {
-    return $this->definitionBuffer;
+    return $this->definitionsByIdMap;
   }
 
   /**
    * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdMapInterface
    *
-   * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionBuffer
+   * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::definitionsByIdMap
    */
-  protected function get_definitionBuffer() {
+  protected function get_definitionsByIdMap() {
     // @todo Add a cache, maybe?
     return new DefinitionsByIdBuffer($this->pluginDefinitionDiscovery);
   }
