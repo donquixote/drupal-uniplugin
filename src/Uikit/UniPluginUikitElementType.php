@@ -78,26 +78,27 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
       '#tree' => TRUE,
     );
 
-    if (!empty($element['#views'])) {
-      $element['plugin_options']['sorry'] = array(
-        '#markup' => t('This sub-form would normally be AJAX-updated if you change the display plugin.')
-          . '<br/>' . t('Unfortunately, this is currently not supported, because Views is special.')
-          . '<br/>' . t('For an updated sub-form, click "Apply" to save this form, and open it again.'),
-        '#weight' => -1,
-      );
-    }
-    else {
-      // See https://www.drupal.org/node/752056 "AJAX Forms in Drupal 7".
-      $element['plugin_id']['#ajax'] = array(
-        /* @see _uniplugin_element_ajax_callback() */
-        'callback' => '_uniplugin_element_ajax_callback',
-        'wrapper' => $uniqid,
-        'method' => 'replace',
-        # 'effect' =>
-      );
+    // See https://www.drupal.org/node/752056 "AJAX Forms in Drupal 7".
+    $element['plugin_id']['#ajax'] = array(
+      /* @see _uniplugin_element_ajax_callback() */
+      'callback' => '_uniplugin_element_ajax_callback',
+      'wrapper' => $uniqid,
+      'method' => 'replace',
+      # 'effect' =>
+    );
+
+    // Special handling of ajax for views.
+    /* @see views_ui_edit_form() */
+    // See https://www.drupal.org/node/1183418
+    if (1
+      && isset($form_state['view'])
+      && module_exists('views_ui')
+      && $form_state['view'] instanceof \view
+    ) {
+      // @todo Does this always work?
+      $element['plugin_id']['#ajax']['path'] = $_GET['q'];
     }
 
-    // @todo Reload the 'plugin_options' element with ajax, when 'plugin_id' changes.
     if (NULL !== $plugin_id) {
       $plugin = $this->idToPlugin->idGetPlugin($plugin_id);
       if ($plugin instanceof ConfigurableUniPluginInterface) {
