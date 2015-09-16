@@ -27,4 +27,14 @@ interface ConfigurableUniPluginInterface extends UniPluginInterface {
    */
   function settingsFormValidate(array $conf, array &$form, array &$form_state);
 
+  /**
+   * @param array $conf
+   *   Plugin configuration.
+   * @param string $pluginLabel
+   *   Label from the plugin definition.
+   *
+   * @return string|null
+   */
+  function confGetSummary(array $conf, $pluginLabel);
+
 }
