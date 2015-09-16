@@ -7,7 +7,7 @@ interface IdToLabelInterface {
   /**
    * @param string $id
    *
-   * @return string|null
+   * @return string
    */
   function idGetLabel($id);
 
