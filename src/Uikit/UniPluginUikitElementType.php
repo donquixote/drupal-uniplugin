@@ -87,6 +87,8 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
       # 'effect' =>
     );
 
+    $element['plugin_id']['#plugin_options_element_reference'] = &$element['plugin_options'];
+
     // Special handling of ajax for views.
     /* @see views_ui_edit_form() */
     // See https://www.drupal.org/node/1183418
