@@ -31,6 +31,14 @@ interface UniPluginManagerInterface {
    * @param array $settings
    *   Format: array('plugin_id' => :string, 'plugin_options' => :array)
    *
+   * @return string|null
+   */
+  function settingsGetSummary(array $settings);
+
+  /**
+   * @param array $settings
+   *   Format: array('plugin_id' => :string, 'plugin_options' => :array)
+   *
    * @return object
    *   The handler object for the given plugin id and plugin options.
    *   This needs to be further type-checked before it can be used.

@@ -185,7 +185,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::manager
    */
   protected function get_manager() {
-    return new UniPluginManager($this->uikitElementType, $this->idConfToHandler, $this->idToLabel);
+    return new UniPluginManager($this->uikitElementType, $this->idConfToHandler, $this->idToLabel, $this->idConfToSummary);
   }
 
   /**
