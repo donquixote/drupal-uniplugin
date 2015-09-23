@@ -33,17 +33,21 @@ class IdConfToSummary implements IdConfToSummaryInterface {
    * @param string $id
    * @param array $conf
    *
-   * @return string
+   * @return string|null
    */
   function idConfGetSummary($id, array $conf) {
     $label = $this->idToLabel->idGetLabel($id);
+    if (!isset($label)) {
+      // A plugin definition with this id does not exist.
+      return NULL;
+    }
     $plugin = $this->idToPlugin->idGetPlugin($id);
     if (!$plugin instanceof ConfigurableUniPluginInterface) {
       return $label;
     }
     $options_summary = $plugin->confGetSummary($conf, $label);
     if (NULL === $options_summary) {
-      return $label;
+      return $label . '…';
     }
     return $label . ': ' . $options_summary;
   }

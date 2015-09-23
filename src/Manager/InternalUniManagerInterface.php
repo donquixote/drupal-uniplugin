@@ -22,7 +22,7 @@ interface InternalUniManagerInterface {
    * @param array $settings
    *   Format: array('plugin_id' => :string, 'plugin_options' => :array)
    *
-   * @return string|null
+   * @return string
    */
   function settingsGetSummary(array $settings);
 

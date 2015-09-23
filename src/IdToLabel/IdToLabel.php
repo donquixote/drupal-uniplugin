@@ -31,13 +31,13 @@ class IdToLabel implements IdToLabelInterface {
   /**
    * @param string $id
    *
-   * @return string
+   * @return string|null
    */
   function idGetLabel($id) {
     $definition = $this->idToDefinition->idGetDefinition($id);
     return isset($definition)
       ? $this->definitionToLabel->definitionGetLabel($definition, $id)
-      : $id;
+      : NULL;
   }
 
 }

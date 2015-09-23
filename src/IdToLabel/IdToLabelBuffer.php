@@ -26,7 +26,7 @@ class IdToLabelBuffer implements IdToLabelInterface {
   /**
    * @param string $id
    *
-   * @return string
+   * @return string|null
    */
   function idGetLabel($id) {
     return array_key_exists($id, $this->labels)

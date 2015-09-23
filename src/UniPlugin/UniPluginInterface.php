@@ -14,11 +14,11 @@ interface UniPluginInterface {
   /**
    * Gets a handler object that does the business logic.
    *
-   * @param array $configuration
+   * @param array $conf
    *   Configuration for the handler object creation, if this plugin is
    *   configurable.
    *
-   * @return object|null|\Drupal\uniplugin\Handler\BrokenUniHandlerInterface
+   * @return object|null
    *   The handler object, or NULL.
    *   Plugins should return handlers of a specific type, but they are not
    *   technically required to do this. This is why an additional check should
@@ -26,6 +26,6 @@ interface UniPluginInterface {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $configuration = NULL);
+  function confGetHandler(array $conf = NULL);
 
 }

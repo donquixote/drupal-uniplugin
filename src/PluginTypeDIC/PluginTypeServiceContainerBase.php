@@ -53,7 +53,7 @@ use Drupal\uniplugin\PluginConfToHandler\PluginConfToHandler;
  * @property \Drupal\uniplugin\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
  *   Gets plugin label from plugin definition and id.
  *
- * @property \Drupal\uniplugin\DefinitionsById\DefinitionsByIdDiscovery $pluginDefinitionDiscovery
+ * @property \Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface $pluginDefinitionDiscovery
  *   Discovers the available plugin ids with their definitions for this plugin type.
  *
  * @property \Drupal\uikit\FormElement\UikitElementTypeInterface $uikitElementType
@@ -197,7 +197,7 @@ abstract class PluginTypeServiceContainerBase extends ServiceContainerBase {
   }
 
   /**
-   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdDiscovery
+   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface
    *
    * @see \Drupal\uniplugin\PluginTypeDIC\PluginTypeServiceContainerBase::pluginDefinitionDiscovery
    */

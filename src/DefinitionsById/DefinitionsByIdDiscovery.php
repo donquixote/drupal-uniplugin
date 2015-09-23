@@ -47,12 +47,14 @@ class DefinitionsByIdDiscovery implements DefinitionsByIdInterface {
     if (!function_exists($function)) {
       return array();
     }
-    $definitions = call_user_func_array($function, $this->arguments);
-    if (!is_array($definitions)) {
+    $module_definitions = call_user_func_array($function, $this->arguments);
+    if (!is_array($module_definitions)) {
       return array();
     }
-    foreach ($definitions as $id => $definition) {
-      $definitions[$id]['module'] = $module;;
+    $definitions = array();
+    foreach ($module_definitions as $id => $definition) {
+      $definition['module'] = $module;
+      $definitions[$module . '.' . $id] = $definition;
     }
     return $definitions;
   }

@@ -43,7 +43,7 @@ class DefaultPluginTypeServiceContainer extends PluginTypeServiceContainerBase {
   }
 
   /**
-   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdDiscovery
+   * @return \Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface
    *
    * @see PluginTypeServiceContainerBase::pluginDefinitionDiscovery
    */

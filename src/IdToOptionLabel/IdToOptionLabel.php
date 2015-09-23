@@ -36,6 +36,9 @@ class IdToOptionLabel implements IdToOptionLabelInterface {
    */
   function idGetOptionLabel($id) {
     $label = $this->idToLabel->idGetLabel($id);
+    if (!isset($label)) {
+      return NULL;
+    }
     $plugin = $this->idToPlugin->idGetPlugin($id);
     if ($plugin instanceof ConfigurableUniPluginInterface) {
       $label .= '…';

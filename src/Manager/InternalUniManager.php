@@ -70,17 +70,21 @@ class InternalUniManager implements InternalUniManagerInterface {
    * @param array $settings
    *   Format: array('plugin_id' => :string, 'plugin_options' => :array)
    *
-   * @return string|null
+   * @return string
    */
   function settingsGetSummary(array $settings) {
     if (!isset($settings['plugin_id'])) {
-      return NULL;
+      return t('No plugin selected.');
     }
     $id = $settings['plugin_id'];
     $conf = isset($settings['plugin_options'])
       ? $settings['plugin_options']
       : array();
-    return $this->idConfToSummary->idConfGetSummary($id, $conf);
+    $summary = $this->idConfToSummary->idConfGetSummary($id, $conf);
+    if (!isset($summary)) {
+      return t('Missing plugin');
+    }
+    return $summary;
   }
 
   /**

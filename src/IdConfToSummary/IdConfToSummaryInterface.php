@@ -8,7 +8,7 @@ interface IdConfToSummaryInterface {
    * @param string $id
    * @param array $conf
    *
-   * @return string
+   * @return string|null
    */
   function idConfGetSummary($id, array $conf);
 }
