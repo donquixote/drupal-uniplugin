@@ -18,18 +18,6 @@ interface ConfigurableUniPluginInterface extends UniPluginInterface {
   function settingsForm(array $conf);
 
   /**
-   * Validation callback for the settings form.
-   *
-   * @param array $conf
-   *   Plugin configuration.
-   * @param array $form
-   * @param array $form_state
-   *
-   * @see \views_handler::options_validate()
-   */
-  function settingsFormValidate(array $conf, array &$form, array &$form_state);
-
-  /**
    * @param array $conf
    *   Plugin configuration.
    * @param string $pluginLabel
