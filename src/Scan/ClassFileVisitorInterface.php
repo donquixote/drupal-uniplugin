@@ -5,9 +5,9 @@ namespace Drupal\uniplugin\Scan;
 interface ClassFileVisitorInterface {
 
   /**
-   * @param string $file
    * @param string $class
+   * @param string $file
    */
-  function visitClassFile($file, $class);
+  function visitClassFile($class, $file);
 
 }

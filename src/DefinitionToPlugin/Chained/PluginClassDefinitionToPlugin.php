@@ -13,7 +13,7 @@ class PluginClassDefinitionToPlugin implements ChainedDefinitionToPluginInterfac
    * @param mixed $plugin_class
    * @param array $definition
    *
-   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   * @return \Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface
    */
   function argDefinitionGetPlugin($plugin_class, array $definition) {
 

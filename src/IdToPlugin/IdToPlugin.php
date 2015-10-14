@@ -27,12 +27,12 @@ class IdToPlugin implements IdToPluginInterface {
   }
 
   /**
-   * @param string $plugin_id
+   * @param string $id
    *
    * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface|null
    */
-  function idGetPlugin($plugin_id) {
-    $definition = $this->idToDefinition->idGetDefinition($plugin_id);
+  function idGetPlugin($id) {
+    $definition = $this->idToDefinition->idGetDefinition($id);
     return isset($definition)
       ? $this->definitionToPlugin->definitionGetPlugin($definition)
       : NULL;

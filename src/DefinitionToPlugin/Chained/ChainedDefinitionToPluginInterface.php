@@ -8,7 +8,7 @@ interface ChainedDefinitionToPluginInterface {
    * @param mixed $arg
    * @param array $definition
    *
-   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   * @return null|\Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface
    */
   function argDefinitionGetPlugin($arg, array $definition);
 }

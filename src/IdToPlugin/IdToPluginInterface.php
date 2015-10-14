@@ -5,10 +5,10 @@ namespace Drupal\uniplugin\IdToPlugin;
 interface IdToPluginInterface {
 
   /**
-   * @param string $plugin_id
+   * @param string $id
    *
-   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface|null
+   * @return \Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface|null
    */
-  function idGetPlugin($plugin_id);
+  function idGetPlugin($id);
 
 }

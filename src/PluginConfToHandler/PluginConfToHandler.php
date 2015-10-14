@@ -3,17 +3,17 @@
 namespace Drupal\uniplugin\PluginConfToHandler;
 
 use Drupal\uniplugin\Handler\BrokenUniHandler;
-use Drupal\uniplugin\UniPlugin\UniPluginInterface;
+use Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface;
 
 class PluginConfToHandler implements PluginConfToHandlerInterface {
 
   /**
-   * @param \Drupal\uniplugin\UniPlugin\UniPluginInterface $plugin
+   * @param \Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface $plugin
    * @param array $conf
    *
    * @return object
    */
-  function pluginConfGetHandler(UniPluginInterface $plugin, array $conf) {
+  function pluginConfGetHandler(UniPluginCandidateInterface $plugin, array $conf) {
 
     try {
       $handler = $plugin->confGetHandler($conf);

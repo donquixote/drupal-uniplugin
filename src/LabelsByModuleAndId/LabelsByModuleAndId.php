@@ -4,7 +4,7 @@ namespace Drupal\uniplugin\LabelsByModuleAndId;
 
 use Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface;
 
-use Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface;
+use Drupal\uniplugin\IdToLabel\IdToLabelInterface;
 
 class LabelsByModuleAndId implements LabelsByModuleAndIdInterface {
 
@@ -14,19 +14,19 @@ class LabelsByModuleAndId implements LabelsByModuleAndIdInterface {
   private $definitionsById;
 
   /**
-   * @var \Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface
+   * @var \Drupal\uniplugin\IdToLabel\IdToLabelInterface
    */
-  private $idToOptionLabel;
+  private $idToLabel;
 
   /**
    * LabelsByModuleAndId constructor.
    *
    * @param \Drupal\uniplugin\DefinitionsById\DefinitionsByIdInterface $definitionsById
-   * @param \Drupal\uniplugin\IdToOptionLabel\IdToOptionLabelInterface $idToOptionLabel
+   * @param \Drupal\uniplugin\IdToLabel\IdToLabelInterface $idToLabel
    */
-  function __construct(DefinitionsByIdInterface $definitionsById, IdToOptionLabelInterface $idToOptionLabel) {
+  function __construct(DefinitionsByIdInterface $definitionsById, IdToLabelInterface $idToLabel) {
     $this->definitionsById = $definitionsById;
-    $this->idToOptionLabel = $idToOptionLabel;
+    $this->idToLabel = $idToLabel;
   }
 
   /**
@@ -37,7 +37,7 @@ class LabelsByModuleAndId implements LabelsByModuleAndIdInterface {
     $definitions = $this->definitionsById->getDefinitionsById();
     $labels_by_module = array();
     foreach ($definitions as $id => $definition) {
-      $label = $this->idToOptionLabel->idGetOptionLabel($id);
+      $label = $this->idToLabel->idGetLabel($id);
       $module = isset($definition['module'])
         ? $definition['module']
         : '';

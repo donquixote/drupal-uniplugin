@@ -2,20 +2,9 @@
 
 namespace Drupal\uniplugin\UniPlugin;
 
-interface ConfigurableUniPluginInterface extends UniPluginInterface {
+use Drupal\uniplugin\Configurable\UniConfigurableInterface;
 
-  /**
-   * Builds a settings form for the plugin configuration.
-   *
-   * @param array $conf
-   *   Current configuration. Will be empty if not configured yet.
-   *
-   * @return array
-   *   A sub-form array to configure the plugin.
-   *
-   * @see \views_handler::options_form()
-   */
-  function settingsForm(array $conf);
+interface ConfigurableUniPluginInterface extends UniPluginInterface, UniConfigurableInterface {
 
   /**
    * @param array $conf
@@ -25,6 +14,6 @@ interface ConfigurableUniPluginInterface extends UniPluginInterface {
    *
    * @return string|null
    */
-  function confGetSummary(array $conf, $pluginLabel);
+  function confGetSummary(array $conf, $pluginLabel = NULL);
 
 }

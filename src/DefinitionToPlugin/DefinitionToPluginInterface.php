@@ -9,7 +9,7 @@ interface DefinitionToPluginInterface {
    *
    * @param array $definition
    *
-   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   * @return \Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface
    */
   function definitionGetPlugin(array $definition);
 

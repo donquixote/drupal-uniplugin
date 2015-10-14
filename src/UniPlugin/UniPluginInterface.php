@@ -2,14 +2,19 @@
 
 namespace Drupal\uniplugin\UniPlugin;
 
+use Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface;
+
 /**
- * Interface for plugin objects.
+ * Interface for "valid" plugin objects.
  *
  * Plugins should not do any business logic on their own. Instead, they should
  * create and provide a handler object that does the business logic for the
  * respective plugin type.
+ *
+ * Any plugin class that can return valid handler objects should implement this
+ * interface, and not the parent.
  */
-interface UniPluginInterface {
+interface UniPluginInterface extends UniPluginCandidateInterface {
 
   /**
    * Gets a handler object that does the business logic.

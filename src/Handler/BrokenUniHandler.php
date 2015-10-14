@@ -2,7 +2,7 @@
 
 namespace Drupal\uniplugin\Handler;
 
-use Drupal\uniplugin\UniPlugin\UniPluginInterface;
+use Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface;
 
 class BrokenUniHandler implements BrokenUniHandlerInterface {
 
@@ -71,11 +71,11 @@ class BrokenUniHandler implements BrokenUniHandlerInterface {
   }
 
   /**
-   * @param \Drupal\uniplugin\UniPlugin\UniPluginInterface $plugin
+   * @param \Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface $plugin
    *
    * @return $this
    */
-  function setPlugin(UniPluginInterface $plugin) {
+  function setPlugin(UniPluginCandidateInterface $plugin) {
     $this->plugin = $plugin;
     return $this;
   }

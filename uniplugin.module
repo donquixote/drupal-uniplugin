@@ -1,4 +1,15 @@
 <?php
+use Drupal\uniplugin\UniPluginHub;
+
+/**
+ * @return \Drupal\uniplugin\UniPluginHub
+ */
+function uniplugin() {
+  static $hub;
+  return isset($hub)
+    ? $hub
+    : $hub = new UniPluginHub();
+}
 
 /**
  * @param array $form

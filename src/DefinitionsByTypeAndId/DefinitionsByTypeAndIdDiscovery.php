@@ -32,11 +32,9 @@ class DefinitionsByTypeAndIdDiscovery implements DefinitionsByTypeAndIdInterface
     $suffix = '_' . $this->hook;
     foreach (module_implements($this->hook) as $module) {
       foreach ($this->moduleGetDefinitionsByTypeAndId($module, $suffix) as $type => $definitionsById) {
-        if (array_key_exists($type, $definitions)) {
-          $definitions[$type] += $definitionsById;
-        }
-        else {
-          $definitions[$type] = $definitionsById;
+        foreach ($definitionsById as $id => $definition) {
+          $definition['module'] = $module;
+          $definitions[$type][$module . '.' . $id] = $definition;
         }
       }
     }

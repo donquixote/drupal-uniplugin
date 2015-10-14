@@ -23,7 +23,7 @@ class HandlerFactoryUniPlugin implements UniPluginInterface {
    * @param mixed|callable $factory
    * @param array $args
    */
-  function __construct($factory, array $args) {
+  function __construct($factory, array $args = array()) {
     $this->factory = $factory;
     $this->args = $args;
   }

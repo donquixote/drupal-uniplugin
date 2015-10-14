@@ -2,7 +2,9 @@
 
 namespace Drupal\uniplugin\DefinitionToPlugin\Chained;
 
+use Drupal\uniplugin\ReflectionUtil;
 use Drupal\uniplugin\UniPlugin\Broken\BrokenUniPlugin;
+use Drupal\uniplugin\UniPlugin\Contextual\FactoryContextualUniPlugin;
 use Drupal\uniplugin\UniPlugin\UniPluginInterface;
 
 class PluginFactoryDefinitionToPlugin implements ChainedDefinitionToPluginInterface {
@@ -10,24 +12,46 @@ class PluginFactoryDefinitionToPlugin implements ChainedDefinitionToPluginInterf
   /**
    * Gets the handler object, or a fallback object for broken / missing handler.
    *
-   * @param mixed $plugin_factory
+   * @param mixed $pluginFactory
    * @param array $definition
    *
-   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   * @return null|\Drupal\uniplugin\UniPlugin\Candidate\UniPluginCandidateInterface
    */
-  function argDefinitionGetPlugin($plugin_factory, array $definition) {
+  function argDefinitionGetPlugin($pluginFactory, array $definition) {
 
-    if (!is_callable($plugin_factory)) {
+    $reflFactory = ReflectionUtil::callbackGetReflection($pluginFactory);
+
+    if (NULL === $reflFactory) {
       return BrokenUniPlugin::createFromMessage(
-        '$definition[plugin_factory] is not callable.');
+        '$definition[plugin_factory] of type ' . gettype($pluginFactory) . ' is not callable.');
+    }
+
+    $reflParams = $reflFactory->getParameters();
+
+    if (empty($reflParams)) {
+      // We are only interested in plugin factories that actually require
+      // contextual parameters.
+      return NULL;
     }
 
     $args = isset($definition['plugin_factory_arguments'])
       ? $definition['plugin_factory_arguments']
       : array();
 
+    $missingArgs = array();
+
+    foreach ($reflParams as $i => $reflParam) {
+      if (!array_key_exists($i, $args)) {
+        $missingArgs[$i] = $reflParam;
+      }
+    }
+
+    if (count($missingArgs)) {
+      return new FactoryContextualUniPlugin($pluginFactory, $args, $missingArgs);
+    }
+
     try {
-      $plugin = call_user_func_array($plugin_factory, $args);
+      $plugin = call_user_func_array($pluginFactory, $args);
     }
     catch (\Exception $e) {
       return BrokenUniPlugin::createFromMessage('Exception in plugin factory.')

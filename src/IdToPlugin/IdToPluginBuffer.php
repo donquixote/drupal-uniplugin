@@ -22,13 +22,13 @@ class IdToPluginBuffer implements IdToPluginInterface {
   }
 
   /**
-   * @param string $plugin_id
+   * @param string $id
    *
    * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface|null
    */
-  function idGetPlugin($plugin_id) {
-    return array_key_exists($plugin_id, $this->plugins)
-      ? $this->plugins[$plugin_id]
-      : $this->plugins[$plugin_id] = $this->decorated->idGetPlugin($plugin_id);
+  function idGetPlugin($id) {
+    return array_key_exists($id, $this->plugins)
+      ? $this->plugins[$id]
+      : $this->plugins[$id] = $this->decorated->idGetPlugin($id);
   }
 }

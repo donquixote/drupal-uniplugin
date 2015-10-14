@@ -6,6 +6,7 @@ use Drupal\uikit\FormElement\UikitElementTypeInterface;
 use Drupal\uniplugin\LabelsByModuleAndId\LabelsByModuleAndIdInterface;
 use Drupal\uniplugin\IdToPlugin\IdToPluginInterface;
 use Drupal\uniplugin\UniPlugin\ConfigurableUniPluginInterface;
+use Drupal\uniplugin\UniPlugin\UniPluginInterface;
 
 class UniPluginUikitElementType implements UikitElementTypeInterface {
 
@@ -64,7 +65,9 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
       : NULL;
 
     $element['plugin_id'] = array(
-      '#title' => $element['#title'],
+      '#title' => isset($element['#title'])
+        ? $element['#title']
+        : t('Plugin'),
       '#type' => 'select',
       '#options' => $this->getSelectOptions(),
       '#default_value' => $plugin_id,
@@ -107,7 +110,7 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
         $conf = isset($value['plugin_options'])
           ? $value['plugin_options']
           : array();
-        $options_form = $plugin->settingsForm($conf);
+        $options_form = $plugin->confGetForm($conf);
         if ($options_form) {
           $element['plugin_options'] += $options_form;
         }
@@ -130,6 +133,18 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
     $module_info = system_get_info('module_enabled');
     $options = array();
     foreach ($labelsByModule as $module => $labelsById) {
+      foreach ($labelsById as $id => $label) {
+        $label = $this->processLabel($id, $label);
+        if (NULL === $label) {
+          unset($labelsById[$id]);
+        }
+        else {
+          $labelsById[$id] = $label;
+        }
+      }
+      if (!count($labelsById)) {
+        continue;
+      }
       $group_base = isset($module_info[$module]['name'])
         ? $module_info[$module]['name']
         : $module;
@@ -148,5 +163,24 @@ class UniPluginUikitElementType implements UikitElementTypeInterface {
     }
 
     return $options;
+  }
+
+  /**
+   * @param string $id
+   * @param string $label
+   *
+   * @return null|string
+   */
+  private function processLabel($id, $label) {
+    $plugin = $this->idToPlugin->idGetPlugin($id);
+    if ($plugin instanceof ConfigurableUniPluginInterface) {
+      return $label . '…';
+    }
+    elseif ($plugin instanceof UniPluginInterface) {
+      return $label;
+    }
+    else {
+      return NULL;
+    }
   }
 }
