@@ -1,6 +1,6 @@
-# Unified Plugin API
+# Unified Plugin API (Drupal)
 
-UniPlugin is an API module to create plugin APIs. One example is (or will be) the [EntDisP (Entity Display Plugin)](https://github.com/donquixote/drupal-entdisp) module.
+UniPlugin is an API module to create plugin APIs. Examples are the [EntDisP (Entity Display Plugin)](https://github.com/donquixote/drupal-entdisp) and the [Listformat](https://github.com/donquixote/drupal-listformat) modules.
 
 Plugin systems have a long history in Drupal.
 In D7 there were Ctools plugins, in D8 there is the [D8 core plugin API](https://www.drupal.org/developing/api/8/plugins).
